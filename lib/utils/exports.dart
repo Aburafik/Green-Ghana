@@ -1,0 +1,12 @@
+export 'package:flutter/material.dart';
+export 'package:get/get_core/get_core.dart';
+export 'package:get/get_navigation/get_navigation.dart';
+export 'package:green_ghana_app/utils/colors.dart';
+export 'package:green_ghana_app/utils/constants.dart';
+export 'package:green_ghana_app/utils/routers.dart';
+export 'package:get/route_manager.dart';
+export 'package:green_ghana_app/views/authentication/login.dart';
+export 'package:green_ghana_app/views/home/home_view.dart';
+export 'package:green_ghana_app/views/home/intro_view.dart';
+export 'package:green_ghana_app/views/projects/project_home.dart';
+export 'package:green_ghana_app/views/projects/registered_trees.dart';
