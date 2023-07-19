@@ -136,10 +136,13 @@ class HomeDrawer extends StatelessWidget {
           title: "Strategies",
           icon: FeatherIcons.anchor,
         ),
-        const DrawerTileComponent(
-          title: "About Green Ghana",
-          icon: FeatherIcons.anchor,
-        ),
+        DrawerTileComponent(
+            title: "About Green Ghana",
+            icon: FeatherIcons.anchor,
+            onTap: () {
+              Navigator.pop(context);
+              Get.toNamed(AppRouter.aboutScreen);
+            }),
         const DrawerTileComponent(
           title: "Get in touch",
           icon: FeatherIcons.phoneCall,

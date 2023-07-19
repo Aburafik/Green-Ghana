@@ -34,3 +34,6 @@ AppBar commonAppBar({String? title = "", bool hasIconColor = true}) {
         : null,
   );
 }
+
+const String aboutText =
+    "The Green Ghana Day was introduced in 2021, by H.E. Nana Addo Dankwa Akuffo-Addo as part of an aggressive national afforestation/reforestation programme to restore the lost forest cover of Ghana and to contribute to the global effort to mitigate climate change. The maiden edition was held on June 11 2021, where an estimated 7million tree seedlings were planted across the nation.";

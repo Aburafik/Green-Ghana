@@ -10,3 +10,4 @@ export 'package:green_ghana_app/views/home/home_view.dart';
 export 'package:green_ghana_app/views/home/intro_view.dart';
 export 'package:green_ghana_app/views/projects/project_home.dart';
 export 'package:green_ghana_app/views/projects/registered_trees.dart';
+export 'package:feather_icons/feather_icons.dart';

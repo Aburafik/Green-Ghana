@@ -1,4 +1,3 @@
-import 'package:feather_icons/feather_icons.dart';
 import 'package:green_ghana_app/utils/exports.dart';
 
 class RegisterdTreesVC extends StatelessWidget {
@@ -28,44 +27,47 @@ class RegisterdTreesVC extends StatelessWidget {
                 itemCount: 20,
                 itemBuilder: (context, index) => Column(
                   children: [
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 35,
-                          backgroundImage:
-                              AssetImage("assets/images/tree.jpeg"),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Tree Name",
-                                style: TextStyle(
-                                    color: CustomColors.blackColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 5),
-                                child: Text(
-                                  "ID:5757575775",
-                                  style: TextStyle(
-                                      color: CustomColors.primaryColor,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  "12/07/2023",
-                                  style: TextStyle(),
-                                ),
-                              ),
-                            ],
+                    GestureDetector(
+                      onTap: () => Get.toNamed(AppRouter.treeDetials),
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 35,
+                            backgroundImage:
+                                AssetImage("assets/images/tree.jpeg"),
                           ),
-                        )
-                      ],
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  "Tree Name",
+                                  style: TextStyle(
+                                      color: CustomColors.blackColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 5),
+                                  child: Text(
+                                    "ID:5757575775",
+                                    style: TextStyle(
+                                        color: CustomColors.primaryColor,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    "12/07/2023",
+                                    style: TextStyle(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     const Divider(
                       thickness: 1,
