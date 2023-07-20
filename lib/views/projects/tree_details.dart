@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:green_ghana_app/utils/exports.dart';
 
 class TreeDetailsVC extends StatelessWidget {
@@ -25,7 +27,7 @@ class TreeDetailsVC extends StatelessWidget {
                 ),
               ),
               minheading(title: "Tree Name"),
-              ReUsableFormWidget(
+              const ReUsableFormWidget(
                 hintText: "Mahugani",
               ),
               minheading(title: "Tree Status"),
@@ -44,19 +46,19 @@ class TreeDetailsVC extends StatelessWidget {
                 ),
               ),
               minheading(title: "Tree Height"),
-              ReUsableFormWidget(
+              const ReUsableFormWidget(
                 hintText: "2cm",
               ),
               minheading(title: "Tree Width"),
-              ReUsableFormWidget(
+              const ReUsableFormWidget(
                 hintText: "10cm",
               ),
               minheading(title: "Date Planted"),
-              ReUsableFormWidget(
+              const ReUsableFormWidget(
                 hintText: "12/01/2023",
               ),
                minheading(title: "Loaction"),
-              ReUsableFormWidget(
+              const ReUsableFormWidget(
                 hintText: "Kasoa",
               ),
             ],
@@ -66,16 +68,7 @@ class TreeDetailsVC extends StatelessWidget {
     );
   }
 
-  Padding minheading({String? title}) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15, bottom: 10),
-      child: Text(
-        title!,
-        style: const TextStyle(
-            color: CustomColors.blackColor, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
+
 }
 
 class ReUsableFormWidget extends StatelessWidget {
@@ -89,7 +82,7 @@ class ReUsableFormWidget extends StatelessWidget {
     return DecoratedMaterialWidget(
       child: Center(
           child: Padding(
-        padding: EdgeInsets.only(left: 8),
+        padding: const EdgeInsets.only(left: 8),
         child: TextField(
           decoration:
               InputDecoration(hintText: hintText!, border: InputBorder.none),

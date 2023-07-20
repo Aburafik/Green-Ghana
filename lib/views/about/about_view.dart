@@ -5,7 +5,7 @@ class AboutGreenGhana extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textStyle = TextStyle(
+    var textStyle = const TextStyle(
         color: CustomColors.lightGreenColor,
         fontSize: 25,
         fontWeight: FontWeight.w600);
@@ -25,7 +25,7 @@ class AboutGreenGhana extends StatelessWidget {
                 "INITIATIVE",
                 style: textStyle.copyWith(color: CustomColors.yellowColor),
               ),
-              Text(aboutText,style: TextStyle(height:2 ),)
+              const Text(aboutText,style: TextStyle(height:2 ),)
             ],
           ),
         ),

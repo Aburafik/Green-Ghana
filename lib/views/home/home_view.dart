@@ -1,10 +1,5 @@
-import 'package:feather_icons/feather_icons.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:green_ghana_app/components/drawer_tiles.dart';
-import 'package:green_ghana_app/utils/colors.dart';
-import 'package:green_ghana_app/utils/routers.dart';
+import 'package:green_ghana_app/utils/exports.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -94,29 +89,6 @@ class HomeView extends StatelessWidget {
   }
 }
 
-List<Map<String, dynamic>> categories = [
-  {
-    "id": 1,
-    "title": "General Public Tree Planting program",
-    "image": "assets/images/g.jpg",
-  },
-  {
-    "id": 2,
-    "title": "Government Institutions Tree Planting Program",
-    "image": "assets/images/g.jpg",
-  },
-  {
-    "id": 3,
-    "title": "Private Institutions Tree Planting Program",
-    "image": "assets/images/g.jpg",
-  },
-  {
-    "id": 4,
-    "title": "Religious Groups Tree Planting Program",
-    "image": "assets/images/g.jpg",
-  }
-];
-
 class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
 
@@ -132,10 +104,13 @@ class HomeDrawer extends StatelessWidget {
           title: "Profile",
           icon: FeatherIcons.user,
         ),
-        const DrawerTileComponent(
-          title: "Strategies",
-          icon: FeatherIcons.anchor,
-        ),
+        DrawerTileComponent(
+            title: "Strategies",
+            icon: FeatherIcons.anchor,
+            onTap: () {
+              Navigator.pop(context);
+              Get.toNamed(AppRouter.strategies);
+            }),
         DrawerTileComponent(
             title: "About Green Ghana",
             icon: FeatherIcons.anchor,

@@ -27,7 +27,7 @@ AppBar commonAppBar({String? title = "", bool hasIconColor = true}) {
     elevation: 0,
     title: Text(
       title!,
-      style: TextStyle(color: CustomColors.blackColor),
+      style: const TextStyle(color: CustomColors.blackColor),
     ),
     iconTheme: hasIconColor
         ? const IconThemeData(color: CustomColors.blackColor)
@@ -37,3 +37,37 @@ AppBar commonAppBar({String? title = "", bool hasIconColor = true}) {
 
 const String aboutText =
     "The Green Ghana Day was introduced in 2021, by H.E. Nana Addo Dankwa Akuffo-Addo as part of an aggressive national afforestation/reforestation programme to restore the lost forest cover of Ghana and to contribute to the global effort to mitigate climate change. The maiden edition was held on June 11 2021, where an estimated 7million tree seedlings were planted across the nation.";
+
+List<Map<String, dynamic>> categories = [
+  {
+    "id": 1,
+    "title": "General Public Tree Planting program",
+    "image": "assets/images/g.jpg",
+  },
+  {
+    "id": 2,
+    "title": "Government Institutions Tree Planting Program",
+    "image": "assets/images/g.jpg",
+  },
+  {
+    "id": 3,
+    "title": "Private Institutions Tree Planting Program",
+    "image": "assets/images/g.jpg",
+  },
+  {
+    "id": 4,
+    "title": "Religious Groups Tree Planting Program",
+    "image": "assets/images/g.jpg",
+  }
+];
+
+Padding minheading({String? title}) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 15, bottom: 10),
+    child: Text(
+      title!,
+      style: const TextStyle(
+          color: CustomColors.blackColor, fontWeight: FontWeight.w600),
+    ),
+  );
+}

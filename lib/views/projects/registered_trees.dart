@@ -29,18 +29,18 @@ class RegisterdTreesVC extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () => Get.toNamed(AppRouter.treeDetials),
-                      child: Row(
+                      child: const Row(
                         children: [
-                          const CircleAvatar(
+                          CircleAvatar(
                             radius: 35,
                             backgroundImage:
                                 AssetImage("assets/images/tree.jpeg"),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: 10),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              children: [
                                 Text(
                                   "Tree Name",
                                   style: TextStyle(

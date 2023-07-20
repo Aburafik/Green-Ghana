@@ -34,7 +34,7 @@ class ProjectHomeView extends StatelessWidget {
                     ReUsableCard(
                       title: "Register A Tree",
                       image: "trees.jpg",
-                      onTap: () {},
+                      onTap: () => Get.toNamed(AppRouter.registerTreeScreen),
                     ),
                     ReUsableCard(
                       title: "Registered Trees",
@@ -42,8 +42,8 @@ class ProjectHomeView extends StatelessWidget {
                       onTap: () => Get.toNamed(AppRouter.regidtered_tress),
                     ),
                     Container(),
-                    Column(
-                      children: const [
+                    const Column(
+                      children: [
                         Text(
                           "Logged into",
                           style: TextStyle(

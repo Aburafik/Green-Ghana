@@ -11,3 +11,7 @@ export 'package:green_ghana_app/views/home/intro_view.dart';
 export 'package:green_ghana_app/views/projects/project_home.dart';
 export 'package:green_ghana_app/views/projects/registered_trees.dart';
 export 'package:feather_icons/feather_icons.dart';
+export 'package:green_ghana_app/utils/exports.dart';
+export 'package:green_ghana_app/views/about/about_view.dart';
+export 'package:green_ghana_app/views/about/strategies.dart';
+export 'package:green_ghana_app/views/projects/tree_details.dart';

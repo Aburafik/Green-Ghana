@@ -61,8 +61,8 @@ class _LoginVCState extends State<LoginVC> {
                               ),
                             ),
                             isSignIn
-                                ? Column(
-                                    children: const [
+                                ? const Column(
+                                    children: [
                                       CommonTextFieldComponent(
                                         hintText: "Ente your Phone Number",
                                       ),
@@ -71,8 +71,8 @@ class _LoginVCState extends State<LoginVC> {
                                       ),
                                     ],
                                   )
-                                : Column(
-                                    children: const [
+                                : const Column(
+                                    children: [
                                       CommonTextFieldComponent(
                                         hintText: "Project Name",
                                       ),
@@ -111,9 +111,9 @@ class _LoginVCState extends State<LoginVC> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [
+                              children: [
                                 Text(
                                   "Don't have an account? ",
                                 ),
