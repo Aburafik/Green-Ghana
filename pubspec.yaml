@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.5
   feather_icons: ^1.2.0
   card_vertical_divider: ^0.0.1
+  logger: ^2.0.1
 
 dev_dependencies:
   flutter_test:
