@@ -31,15 +31,15 @@ class AuthService {
     final res = await _connect.post(
         "${ApIEndPoints.BASE_URL}${ApIEndPoints.LOG_IN}",
         jsonEncode({
-          accountType == "individual" ? "contact" : "insttitutionName":
+          accountType == "individual" ? "contact" : "institutionName":
               nameOrPhoneNubmer,
-          "password": password
+          "password": password,
+          "accountType": accountType
         }));
     if (res.statusCode == 200) {
-      UserModel user = userModelFromJson(res.body.toString());
-      logger.d(user.userToken);
-      // logger.d(res.body);
-      // return User.fromJson(res.body);
+      final user = res.body['userAddress'];
+      logger.d(user);
+      logger.d(res.body);
     } else {
       print(res.body);
     }

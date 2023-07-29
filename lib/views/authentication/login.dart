@@ -1,4 +1,4 @@
-import 'package:green_ghana_app/modules/user_module.dart';
+import 'package:green_ghana_app/modules/sign_uo_module.dart';
 import 'package:green_ghana_app/services/auth_service.dart';
 // import 'package:green_ghana_app/services/auth_service.dart';
 import 'package:green_ghana_app/utils/exports.dart';
@@ -37,22 +37,24 @@ class _LoginVCState extends State<LoginVC> {
   }
 
   bool isSignIn = true;
-  String accountType = "individual";
+  String accountType = Get.parameters["accountType"]!;
+  String organizationName = Get.parameters["organizationName"]!;
   @override
   void dispose() {
     nameController!.dispose();
     emailController!.dispose();
     contactController!.dispose();
-    contactController!.dispose();
     locationController!.dispose();
     institutionIdController!.dispose();
+    institutionNameController!.dispose();
     digitalAddressController!.dispose();
-
+    passwordController!.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(accountType);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: commonAppBar(),
@@ -92,11 +94,11 @@ class _LoginVCState extends State<LoginVC> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.symmetric(vertical: 10),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
                               child: Text(
-                                "Login",
-                                style: TextStyle(
+                                isSignIn ? "Login" : "Sign Up",
+                                style: const TextStyle(
                                     color: CustomColors.secondaryColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold),
@@ -109,7 +111,9 @@ class _LoginVCState extends State<LoginVC> {
                                         hintText: accountType == "individual"
                                             ? "Ente your Phone Number"
                                             : "Enter Institution Name",
-                                        controller: nameController,
+                                        controller: accountType == "individual"
+                                            ? contactController
+                                            : nameController,
                                       ),
                                       CommonTextFieldComponent(
                                         hintText: "Enter your password",
@@ -120,25 +124,41 @@ class _LoginVCState extends State<LoginVC> {
                                 : Column(
                                     children: [
                                       CommonTextFieldComponent(
-                                        hintText: "Project Name",
+                                        hintText: accountType == "individual"
+                                            ? "Name"
+                                            : "Project Name",
                                         controller: nameController,
                                       ),
                                       CommonTextFieldComponent(
                                         hintText: "Email",
                                         controller: emailController,
                                       ),
-                                      CommonTextFieldComponent(
-                                        hintText: "Institution Name",
-                                        controller: institutionNameController,
-                                      ),
-                                      CommonTextFieldComponent(
-                                        hintText:
-                                            "Institution Identification Number",
-                                        controller: institutionNameController,
-                                      ),
+                                      accountType == "individual"
+                                          ? const Wrap()
+                                          : CommonTextFieldComponent(
+                                              hintText: "Institution Name",
+                                              controller:
+                                                  institutionNameController,
+                                            ),
+                                      accountType == "individual"
+                                          ? const Wrap()
+                                          : CommonTextFieldComponent(
+                                              hintText:
+                                                  "Institution Identification Number",
+                                              controller:
+                                                  institutionNameController,
+                                            ),
                                       CommonTextFieldComponent(
                                         hintText: "Digital Address",
                                         controller: digitalAddressController,
+                                      ),
+                                      CommonTextFieldComponent(
+                                        hintText: "Contact",
+                                        controller: contactController,
+                                      ),
+                                      CommonTextFieldComponent(
+                                        hintText: "Password",
+                                        controller: passwordController,
                                       ),
                                     ],
                                   ),
@@ -149,38 +169,36 @@ class _LoginVCState extends State<LoginVC> {
                                       if (accountType == "individual" ||
                                           contactController!.text.isNotEmpty ||
                                           passwordController!.text.isNotEmpty) {
-                                        await _authService.signUpUser(
-                                          user: UserAddress(
-                                              name: nameController!.text,
-                                              email: emailController!.text,
-                                              location:
-                                                  locationController!.text,
-                                              digitalAddress:
-                                                  digitalAddressController!
-                                                      .text,
-                                              accountType: "institution",
-                                              institutionId:
-                                                  institutionIdController!.text,
-                                              institutionName:
-                                                  institutionNameController!
-                                                      .text,
-                                              contact: contactController!.text),
-                                        );
+                                        // await _authService.signUpUser(
+                                        //   signUpUser: SignUpModel(
+                                        //       name: nameController!.text,
+                                        //       email: emailController!.text,
+                                        //       password:
+                                        //           passwordController!.text,
+                                        //       location:
+                                        //           locationController!.text,
+                                        //       digitalAddress:
+                                        //           digitalAddressController!
+                                        //               .text,
+                                        //       accountType: accountType,
+                                        //       institutionId:
+                                        //           institutionIdController!.text,
+                                        //       institutionName:
+                                        //           institutionNameController!
+                                        //               .text,
+                                        //       contact: contactController!.text),
+                                        // );
                                       }
                                     }
                                   : () async {
-                                      if (nameController!.text.isNotEmpty &&
-                                          passwordController!.text.isNotEmpty) {
-                                        _authService.signInUser(
-                                          accountType: accountType,
-                                          nameOrPhoneNubmer:
-                                              nameController!.text,
-                                          password: passwordController!.text,
-                                        );
-                                      } else {
-                                        print(
-                                            "Please enter a name or phone number for the account ");
-                                      }
+                                      _authService.signInUser(
+                                        accountType: accountType,
+                                        nameOrPhoneNubmer:
+                                            accountType == "individual"
+                                                ? contactController!.text
+                                                : nameController!.text,
+                                        password: passwordController!.text,
+                                      );
                                     },
                               //  () => Get.toNamed(AppRouter.projecthome),
                               child: Material(
@@ -189,14 +207,14 @@ class _LoginVCState extends State<LoginVC> {
                                     side: const BorderSide(
                                         color: CustomColors.secondaryColor),
                                     borderRadius: BorderRadius.circular(10)),
-                                child: const Padding(
-                                  padding: EdgeInsets.symmetric(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
                                     vertical: 15,
                                   ),
                                   child: Center(
                                     child: Text(
-                                      "SignIn",
-                                      style: TextStyle(
+                                      isSignIn ? "SignIn" : "Sign Up",
+                                      style: const TextStyle(
                                           color: CustomColors.secondaryColor),
                                     ),
                                   ),
@@ -204,16 +222,23 @@ class _LoginVCState extends State<LoginVC> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  "Don't have an account? ",
+                                  isSignIn
+                                      ? "Don't have an account? "
+                                      : "Already have an account? ",
                                 ),
-                                Text(
-                                  "Sign up",
-                                  style: TextStyle(
-                                      color: CustomColors.secondaryColor),
+                                GestureDetector(
+                                  onTap: () => setState(() {
+                                    isSignIn = !isSignIn;
+                                  }),
+                                  child: Text(
+                                    isSignIn ? "Sign up" : "Sign In",
+                                    style: const TextStyle(
+                                        color: CustomColors.secondaryColor),
+                                  ),
                                 ),
                               ],
                             )

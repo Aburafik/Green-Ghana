@@ -42,7 +42,12 @@ class HomeView extends StatelessWidget {
                     child: ListView.builder(
                         itemCount: categories.length,
                         itemBuilder: (context, index) => GestureDetector(
-                              onTap: () => Get.toNamed(AppRouter.login),
+                              onTap: () =>
+                                  Get.toNamed(AppRouter.login, parameters: {
+                                "accountType":
+                                    index == 0 ? "individual" : "institution",
+                                "organizationName": categories[index]['title']
+                              }),
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8),

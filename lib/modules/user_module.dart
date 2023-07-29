@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
+UserModel userModelFromJson(str) => UserModel.fromJson(json.decode(str));
 
 String userModelToJson(UserModel data) => json.encode(data.toJson());
 
@@ -33,7 +33,7 @@ class UserModel {
 }
 
 class UserAddress {
-    String ?id;
+    String id;
     String name;
     String email;
     String location;
@@ -41,10 +41,9 @@ class UserAddress {
     String accountType;
     String institutionId;
     String institutionName;
-    String contact;
 
     UserAddress({
-        this.id,
+        required this.id,
         required this.name,
         required this.email,
         required this.location,
@@ -52,7 +51,6 @@ class UserAddress {
         required this.accountType,
         required this.institutionId,
         required this.institutionName,
-        required this.contact,
     });
 
     factory UserAddress.fromJson(Map<String, dynamic> json) => UserAddress(
@@ -64,7 +62,6 @@ class UserAddress {
         accountType: json["accountType"],
         institutionId: json["institutionId"],
         institutionName: json["institutionName"],
-        contact: json["contact"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -76,6 +73,5 @@ class UserAddress {
         "accountType": accountType,
         "institutionId": institutionId,
         "institutionName": institutionName,
-        "contact": contact,
     };
 }
