@@ -1,7 +1,40 @@
+import 'package:green_ghana_app/modules/register_tree_model.dart';
+import 'package:green_ghana_app/services/trees_auth.dart';
 import 'package:green_ghana_app/utils/exports.dart';
 
-class RegisterTreeVC extends StatelessWidget {
+class RegisterTreeVC extends StatefulWidget {
   const RegisterTreeVC({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterTreeVC> createState() => _RegisterTreeVCState();
+}
+
+class _RegisterTreeVCState extends State<RegisterTreeVC> {
+  TreeRegistration registration = TreeRegistration();
+  TextEditingController? treeNameController;
+
+  TextEditingController? treeHeightController;
+
+  TextEditingController? datePlantedController;
+
+  TextEditingController? locationController;
+  @override
+  void initState() {
+    treeNameController = TextEditingController();
+    treeHeightController = TextEditingController();
+    datePlantedController = TextEditingController();
+    locationController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    treeHeightController!.dispose();
+    treeNameController!.dispose();
+    datePlantedController!.dispose();
+    locationController!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,26 +58,38 @@ class RegisterTreeVC extends StatelessWidget {
                 ),
               ),
               minheading(title: "Tree Name"),
-              const ReUsableFormWidget(
+              ReUsableFormWidget(
                 hintText: "Tree name",
+                controller: treeNameController,
               ),
               minheading(title: "Tree Height"),
-              const ReUsableFormWidget(
+              ReUsableFormWidget(
                 hintText: "",
+                controller: treeHeightController,
               ),
               minheading(title: "Date"),
-              const ReUsableFormWidget(
+              ReUsableFormWidget(
                 hintText: "12/12/2015",
+                controller: datePlantedController,
               ),
               minheading(title: "Location"),
-              const ReUsableFormWidget(
+              ReUsableFormWidget(
                 hintText: "",
+                controller: locationController,
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                   style: TextButton.styleFrom(
                       backgroundColor: CustomColors.primaryColor),
-                  onPressed: () {},
+                  onPressed: () async {
+                    registration.registerTree(
+                        registerTree: RegesterTreeModel(
+                            treeName: treeNameController!.text,
+                            treeHeight: int.parse(treeHeightController!.text),
+                            locationPlanted: locationController!.text,
+                            datePlanted: datePlantedController!.text),
+                        context: context);
+                  },
                   child: const Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),

@@ -1,6 +1,5 @@
 import 'package:green_ghana_app/utils/exports.dart';
 
-
 ////COMMON IMAGE DECORATION
 const decorationImage = DecorationImage(
     image: AssetImage("assets/images/tree.jpeg"), fit: BoxFit.cover);
@@ -72,6 +71,7 @@ Padding minheading({String? title}) {
     ),
   );
 }
+
 Future<dynamic> loadingBar(BuildContext context) {
   return showDialog(
     // barrierDismissible: false,
@@ -102,5 +102,12 @@ showErrorSnackBar({BuildContext? context, String? message}) {
   return showTopSnackBar(
     Overlay.of(context!),
     CustomSnackBar.error(message: message!),
+  );
+}
+
+showSuccessSnackBar({BuildContext? context, String? message}) {
+  return showTopSnackBar(
+    Overlay.of(context!),
+    CustomSnackBar.success(message: message!),
   );
 }

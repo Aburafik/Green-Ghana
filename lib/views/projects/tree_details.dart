@@ -57,7 +57,7 @@ class TreeDetailsVC extends StatelessWidget {
               const ReUsableFormWidget(
                 hintText: "12/01/2023",
               ),
-               minheading(title: "Loaction"),
+              minheading(title: "Loaction"),
               const ReUsableFormWidget(
                 hintText: "Kasoa",
               ),
@@ -67,16 +67,16 @@ class TreeDetailsVC extends StatelessWidget {
       ),
     );
   }
-
-
 }
 
 class ReUsableFormWidget extends StatelessWidget {
   const ReUsableFormWidget({
     super.key,
     this.hintText,
+    this.controller
   });
   final String? hintText;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return DecoratedMaterialWidget(
@@ -84,6 +84,7 @@ class ReUsableFormWidget extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.only(left: 8),
         child: TextField(
+          controller: controller,
           decoration:
               InputDecoration(hintText: hintText!, border: InputBorder.none),
         ),

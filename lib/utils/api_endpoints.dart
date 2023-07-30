@@ -5,4 +5,6 @@ class ApIEndPoints {
   static const String LOG_IN = "/login";
   static const String SIGN_UP = "/signup";
   static const String REGISTER_NEW_TREE = "/register/tree";
+  static const String GET_ALL_TREES = "/trees";
+  static const String FILTER_TREE = "/trees/";
 }
