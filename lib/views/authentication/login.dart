@@ -1,4 +1,5 @@
 import 'package:green_ghana_app/components/common_text_field.dart';
+import 'package:green_ghana_app/modules/sign_uo_module.dart';
 import 'package:green_ghana_app/services/auth_service.dart';
 // import 'package:green_ghana_app/services/auth_service.dart';
 import 'package:green_ghana_app/utils/exports.dart';
@@ -146,7 +147,7 @@ class _LoginVCState extends State<LoginVC> {
                                               hintText:
                                                   "Institution Identification Number",
                                               controller:
-                                                  institutionNameController,
+                                                  institutionIdController,
                                             ),
                                       CommonTextFieldComponent(
                                         hintText: "Digital Address",
@@ -155,6 +156,10 @@ class _LoginVCState extends State<LoginVC> {
                                       CommonTextFieldComponent(
                                         hintText: "Contact",
                                         controller: contactController,
+                                      ),
+                                      CommonTextFieldComponent(
+                                        hintText: "Location",
+                                        controller: locationController,
                                       ),
                                       CommonTextFieldComponent(
                                         hintText: "Password",
@@ -169,25 +174,28 @@ class _LoginVCState extends State<LoginVC> {
                                       if (accountType == "individual" ||
                                           contactController!.text.isNotEmpty ||
                                           passwordController!.text.isNotEmpty) {
-                                        // await _authService.signUpUser(
-                                        //   signUpUser: SignUpModel(
-                                        //       name: nameController!.text,
-                                        //       email: emailController!.text,
-                                        //       password:
-                                        //           passwordController!.text,
-                                        //       location:
-                                        //           locationController!.text,
-                                        //       digitalAddress:
-                                        //           digitalAddressController!
-                                        //               .text,
-                                        //       accountType: accountType,
-                                        //       institutionId:
-                                        //           institutionIdController!.text,
-                                        //       institutionName:
-                                        //           institutionNameController!
-                                        //               .text,
-                                        //       contact: contactController!.text),
-                                        // );
+                                        _authService.signUpUser(
+                                            signUpUser: SignUpModel(
+                                                name: nameController!.text,
+                                                email: emailController!.text,
+                                                password:
+                                                    passwordController!.text,
+                                                location:
+                                                    locationController!.text,
+                                                digitalAddress:
+                                                    digitalAddressController!
+                                                        .text,
+                                                accountType: accountType,
+                                                institutionId:
+                                                    institutionIdController!
+                                                        .text,
+                                                institutionName:
+                                                    institutionNameController!
+                                                        .text,
+                                                contact:
+                                                    contactController!.text),
+                                            context: context,
+                                            modelName: organizationName);
                                       }
                                     }
                                   : () async {
