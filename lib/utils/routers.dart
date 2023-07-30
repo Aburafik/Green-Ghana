@@ -19,7 +19,7 @@ class AppRouter {
     GetPage(name: initialRoute, page: () => const IntroView()),
     GetPage(name: login, page: () => const LoginVC()),
     GetPage(name: home, page: () => const HomeView()),
-    GetPage(name: projecthome, page: () => const ProjectHomeView()),
+    GetPage(name: projecthome, page: () => ProjectHomeView()),
     GetPage(name: regidtered_tress, page: () => const RegisterdTreesVC()),
     GetPage(name: treeDetials, page: () => TreeDetailsVC()),
     GetPage(name: aboutScreen, page: () => const AboutGreenGhana()),

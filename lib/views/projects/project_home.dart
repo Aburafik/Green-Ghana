@@ -1,8 +1,9 @@
 import 'package:green_ghana_app/utils/exports.dart';
 
 class ProjectHomeView extends StatelessWidget {
-  const ProjectHomeView({Key? key}) : super(key: key);
+   ProjectHomeView({Key? key}) : super(key: key);
 
+  final modelType = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,21 +43,21 @@ class ProjectHomeView extends StatelessWidget {
                       onTap: () => Get.toNamed(AppRouter.regidtered_tress),
                     ),
                     Container(),
-                    const Column(
+                     Column(
                       children: [
-                        Text(
+                        const Text(
                           "Logged into",
                           style: TextStyle(
                               fontSize: 16,
                               color: CustomColors.secondaryColor,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Text(
-                          "General Public Tree planting Program",
-                          style: TextStyle(color: CustomColors.secondaryColor),
+                          modelType,
+                          style: const TextStyle(color: CustomColors.secondaryColor),
                         ),
                       ],
                     )

@@ -3,7 +3,6 @@ import 'package:green_ghana_app/services/auth_service.dart';
 // import 'package:green_ghana_app/services/auth_service.dart';
 import 'package:green_ghana_app/utils/exports.dart';
 
-
 class LoginVC extends StatefulWidget {
   const LoginVC({super.key});
 
@@ -199,7 +198,8 @@ class _LoginVCState extends State<LoginVC> {
                                                   ? contactController!.text
                                                   : nameController!.text,
                                           password: passwordController!.text,
-                                          context: context);
+                                          context: context,
+                                          modelName: organizationName);
                                     },
                               //  () => Get.toNamed(AppRouter.projecthome),
                               child: Material(
@@ -257,5 +257,3 @@ class _LoginVCState extends State<LoginVC> {
     );
   }
 }
-
-

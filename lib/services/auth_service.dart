@@ -25,26 +25,14 @@ class AuthService {
     return null!;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
   ///Sign In User
-  Future<UserModel> signInUser(
-      {String? nameOrPhoneNubmer,
-      String? password,
-      BuildContext? context,
-      String? accountType}) async {
+  Future<UserModel> signInUser({
+    String? nameOrPhoneNubmer,
+    String? password,
+    BuildContext? context,
+    String? accountType,
+    String? modelName,
+  }) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     loadingBar(context!);
@@ -59,7 +47,7 @@ class AuthService {
     if (res.statusCode == 200) {
       if (context.mounted) {
         Navigator.pop(context);
-        Get.toNamed(AppRouter.projecthome);
+        Get.toNamed(AppRouter.projecthome,arguments: modelName.toString());
       }
       UserModel user = UserModel.fromJson(res.body);
       // final user = res.body['userAddress'];
