@@ -1,7 +1,8 @@
-import 'package:green_ghana_app/modules/sign_uo_module.dart';
+import 'package:green_ghana_app/components/common_text_field.dart';
 import 'package:green_ghana_app/services/auth_service.dart';
 // import 'package:green_ghana_app/services/auth_service.dart';
 import 'package:green_ghana_app/utils/exports.dart';
+
 
 class LoginVC extends StatefulWidget {
   const LoginVC({super.key});
@@ -192,13 +193,13 @@ class _LoginVCState extends State<LoginVC> {
                                     }
                                   : () async {
                                       _authService.signInUser(
-                                        accountType: accountType,
-                                        nameOrPhoneNubmer:
-                                            accountType == "individual"
-                                                ? contactController!.text
-                                                : nameController!.text,
-                                        password: passwordController!.text,
-                                      );
+                                          accountType: accountType,
+                                          nameOrPhoneNubmer:
+                                              accountType == "individual"
+                                                  ? contactController!.text
+                                                  : nameController!.text,
+                                          password: passwordController!.text,
+                                          context: context);
                                     },
                               //  () => Get.toNamed(AppRouter.projecthome),
                               child: Material(
@@ -257,33 +258,4 @@ class _LoginVCState extends State<LoginVC> {
   }
 }
 
-class CommonTextFieldComponent extends StatelessWidget {
-  const CommonTextFieldComponent({
-    super.key,
-    this.hintText,
-    this.controller,
-  });
-  final String? hintText;
-  final TextEditingController? controller;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          hintText: hintText!,
-          fillColor: CustomColors.secondaryColor,
-          filled: true,
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6),
-            borderSide: BorderSide.none,
-          ),
-        ),
-      ),
-    );
-  }
-}
