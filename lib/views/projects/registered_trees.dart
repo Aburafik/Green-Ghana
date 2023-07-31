@@ -37,20 +37,38 @@ class _RegisterdTreesVCState extends State<RegisterdTreesVC> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            TextField(
-              onChanged: (search) {
-                filter = search;
-                setState(() {
-                  filterSearch = _treeService.filterTree(search: search);
-                });
-              },
-              decoration: const InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 10),
-                border: outlineInputBorder,
-                focusedBorder: outlineInputBorder,
-                prefixIcon: Icon(FeatherIcons.search),
-                labelText: "Search tree name",
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    onChanged: (search) {
+                      setState(() {
+                        filter = search;
+                        filterSearch = _treeService.filterTree(search: search);
+                      });
+                    },
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: 10),
+                      border: outlineInputBorder,
+                      focusedBorder: outlineInputBorder,
+                      prefixIcon: Icon(FeatherIcons.search),
+                      labelText: "Search tree name",
+                    ),
+                  ),
+                ),
+                SizedBox(width: 5),
+                Material(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6)),
+                    color: CustomColors.primaryColor,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        FeatherIcons.filter,
+                        color: CustomColors.secondaryColor,
+                      ),
+                    ))
+              ],
             ),
             const SizedBox(height: 15),
             Expanded(

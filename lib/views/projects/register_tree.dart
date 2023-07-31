@@ -132,14 +132,12 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
                   onPressed: () async {
                     registration.registerTree(
                         registerTree: RegesterTreeModel(
-                            image: _image != null
-                                ? 'data:image/png;base64,' +
-                                    base64Encode(_image!.readAsBytesSync())
-                                : '',
+                            image: "",
                             treeName: treeNameController!.text,
                             treeHeight: int.parse(treeHeightController!.text),
                             locationPlanted: locationController!.text,
                             datePlanted: datePlantedController!.text),
+                        file: _image,
                         context: context);
                   },
                   child: const Center(

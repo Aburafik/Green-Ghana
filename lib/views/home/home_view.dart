@@ -1,6 +1,5 @@
 import 'package:green_ghana_app/components/drawer_tiles.dart';
 import 'package:green_ghana_app/services/auth_service.dart';
-import 'package:green_ghana_app/services/auth_service.dart';
 import 'package:green_ghana_app/utils/exports.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
