@@ -1,9 +1,11 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:green_ghana_app/modules/get_all_trees_model.dart';
 import 'package:green_ghana_app/utils/exports.dart';
 
 class TreeDetailsVC extends StatelessWidget {
   TreeDetailsVC({super.key});
+  GetAllTreeModel treeModel = Get.arguments;
   List treeStatus = ["Alive", "Dead"];
   @override
   Widget build(BuildContext context) {
@@ -27,14 +29,14 @@ class TreeDetailsVC extends StatelessWidget {
                 ),
               ),
               minheading(title: "Tree Name"),
-              const ReUsableFormWidget(
-                hintText: "Mahugani",
+               ReUsableFormWidget(
+                hintText: treeModel.treeName,
               ),
               minheading(title: "Tree Status"),
               DecoratedMaterialWidget(
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton(
-                      hint: const Text(""),
+                      hint:  Text(treeModel.status),
                       isExpanded: true,
                       items: treeStatus
                           .map((e) => DropdownMenuItem(
@@ -46,20 +48,20 @@ class TreeDetailsVC extends StatelessWidget {
                 ),
               ),
               minheading(title: "Tree Height"),
-              const ReUsableFormWidget(
-                hintText: "2cm",
+              ReUsableFormWidget(
+                hintText: treeModel.treeHeight.toString(),
               ),
               minheading(title: "Tree Width"),
               const ReUsableFormWidget(
                 hintText: "10cm",
               ),
               minheading(title: "Date Planted"),
-              const ReUsableFormWidget(
-                hintText: "12/01/2023",
+              ReUsableFormWidget(
+                hintText: treeModel.datePlanted.toString(),
               ),
               minheading(title: "Loaction"),
-              const ReUsableFormWidget(
-                hintText: "Kasoa",
+              ReUsableFormWidget(
+                hintText: treeModel.locationPlanted,
               ),
             ],
           ),
@@ -70,11 +72,7 @@ class TreeDetailsVC extends StatelessWidget {
 }
 
 class ReUsableFormWidget extends StatelessWidget {
-  const ReUsableFormWidget({
-    super.key,
-    this.hintText,
-    this.controller
-  });
+  const ReUsableFormWidget({super.key, this.hintText, this.controller});
   final String? hintText;
   final TextEditingController? controller;
   @override

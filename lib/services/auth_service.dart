@@ -85,4 +85,12 @@ class AuthService {
     }
     return null!;
   }
+
+  ///LOOUT USER
+  logoutUser() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    Future.delayed(Duration(seconds: 3), () {
+      pref.remove('token');
+    });
+  }
 }

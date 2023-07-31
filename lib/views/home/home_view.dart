@@ -1,8 +1,31 @@
 import 'package:green_ghana_app/components/drawer_tiles.dart';
+import 'package:green_ghana_app/services/auth_service.dart';
+import 'package:green_ghana_app/services/auth_service.dart';
 import 'package:green_ghana_app/utils/exports.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  String? token;
+  getUsertoken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    setState(() {
+      token = sharedPreferences.getString("token");
+      print(token);
+    });
+  }
+
+  @override
+  void initState() {
+    getUsertoken();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +42,7 @@ class HomeView extends StatelessWidget {
         ],
         elevation: 0,
       ),
-      drawer: const Drawer(
+      drawer: Drawer(
         backgroundColor: CustomColors.primaryColor,
         child: HomeDrawer(),
       ),
@@ -42,12 +65,20 @@ class HomeView extends StatelessWidget {
                     child: ListView.builder(
                         itemCount: categories.length,
                         itemBuilder: (context, index) => GestureDetector(
-                              onTap: () =>
-                                  Get.toNamed(AppRouter.login, parameters: {
-                                "accountType":
-                                    index == 0 ? "individual" : "institution",
-                                "organizationName": categories[index]['title']
-                              }),
+                              onTap: () async {
+                                getUsertoken();
+
+                                token == null
+                                    ? Get.toNamed(AppRouter.login, parameters: {
+                                        "accountType": index == 0
+                                            ? "individual"
+                                            : "institution",
+                                        "organizationName": categories[index]
+                                            ['title']
+                                      })
+                                    : Get.toNamed(AppRouter.projecthome,
+                                        arguments: categories[index]['title']);
+                              },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8),
@@ -95,7 +126,8 @@ class HomeView extends StatelessWidget {
 }
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+  HomeDrawer({super.key});
+  final AuthService _authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +163,12 @@ class HomeDrawer extends StatelessWidget {
           title: "Terms and Policy",
           icon: FeatherIcons.wifi,
         ),
-        const DrawerTileComponent(
+        DrawerTileComponent(
           title: "Logout",
           icon: FeatherIcons.anchor,
+          onTap: () {
+            _authService.logoutUser();
+          },
         )
       ],
     );

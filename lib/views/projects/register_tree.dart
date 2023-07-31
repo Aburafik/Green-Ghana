@@ -10,7 +10,7 @@ class RegisterTreeVC extends StatefulWidget {
 }
 
 class _RegisterTreeVCState extends State<RegisterTreeVC> {
-  TreeRegistration registration = TreeRegistration();
+  TreeService registration = TreeService();
   TextEditingController? treeNameController;
 
   TextEditingController? treeHeightController;
