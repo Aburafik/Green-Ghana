@@ -13,12 +13,16 @@ class RegesterTreeModel {
     int treeHeight;
     String locationPlanted;
     String datePlanted;
+    String image;
+
 
     RegesterTreeModel({
         required this.treeName,
         required this.treeHeight,
         required this.locationPlanted,
         required this.datePlanted,
+        required this.image,
+        
     });
 
     factory RegesterTreeModel.fromJson(Map<String, dynamic> json) => RegesterTreeModel(
@@ -26,6 +30,7 @@ class RegesterTreeModel {
         treeHeight: json["treeHeight"],
         locationPlanted: json["locationPlanted"],
         datePlanted: json["datePlanted"],
+        image: json["image"],
     );
 
     Map<String, dynamic> toJson() => {

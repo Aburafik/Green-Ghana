@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:green_ghana_app/modules/register_tree_model.dart';
 import 'package:green_ghana_app/services/trees_auth.dart';
 import 'package:green_ghana_app/utils/exports.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterTreeVC extends StatefulWidget {
   const RegisterTreeVC({Key? key}) : super(key: key);
@@ -18,6 +22,60 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
   TextEditingController? datePlantedController;
 
   TextEditingController? locationController;
+  File? _image;
+  // String? _imageUrls;
+  String? selectedFile;
+  String? uploadFile;
+
+  final _picker = ImagePicker();
+  Future<void> _openImagePicker({bool? isFrom}) async {
+    final XFile? pickedImage = await _picker.pickImage(
+        source: isFrom! ? ImageSource.gallery : ImageSource.camera);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+        print("Image: " + _image!.path);
+        print("Image: " + _image!.absolute.toString());
+        selectedFile = pickedImage.name;
+        print(pickedImage.name);
+      });
+    }
+  }
+
+  ////SELECT IMAGE BOTTOM SHEET
+  selectImageFrom() {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) => SafeArea(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Select image from"),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Get.back();
+
+                      _openImagePicker(isFrom: false);
+                    },
+                    title: const Text("Camera"),
+                    leading: const Icon(Icons.camera_alt_outlined),
+                  ),
+                  ListTile(
+                    onTap: () {
+                      Get.back();
+                      _openImagePicker(isFrom: true);
+                    },
+                    title: const Text("Gallery"),
+                    leading: const Icon(Icons.camera),
+                  )
+                ],
+              ),
+            ));
+  }
+
   @override
   void initState() {
     treeNameController = TextEditingController();
@@ -46,17 +104,7 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Color(0xffEDEDED),
-                  child: Icon(
-                    FeatherIcons.camera,
-                    color: Color(0xFFE1E1E1),
-                    size: 50,
-                  ),
-                ),
-              ),
+              uploadImageAvater(),
               minheading(title: "Tree Name"),
               ReUsableFormWidget(
                 hintText: "Tree name",
@@ -84,6 +132,10 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
                   onPressed: () async {
                     registration.registerTree(
                         registerTree: RegesterTreeModel(
+                            image: _image != null
+                                ? 'data:image/png;base64,' +
+                                    base64Encode(_image!.readAsBytesSync())
+                                : '',
                             treeName: treeNameController!.text,
                             treeHeight: int.parse(treeHeightController!.text),
                             locationPlanted: locationController!.text,
@@ -101,6 +153,38 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Align uploadImageAvater() {
+    return Align(
+      child: Stack(
+        children: [
+          CircleAvatar(
+            radius: 60,
+            backgroundImage: _image != null ? FileImage(_image!) : null,
+            backgroundColor: Color(0xffEDEDED),
+            child: const Center(
+              child: Icon(
+                FeatherIcons.camera,
+                color: Color(0xFFE1E1E1),
+                size: 50,
+              ),
+            ),
+          ),
+          Positioned(
+              bottom: 0,
+              left: 70,
+              right: 0,
+              child: IconButton(
+                  onPressed: () {
+                    selectImageFrom();
+                  },
+                  icon: const Icon(
+                    Icons.camera_alt_outlined,
+                  )))
+        ],
       ),
     );
   }

@@ -90,10 +90,10 @@ class _RegisterdTreesVCState extends State<RegisterdTreesVC> {
                                       color: Colors.white.withOpacity(.1),
                                       child: Row(
                                         children: [
-                                          const CircleAvatar(
+                                          CircleAvatar(
                                             radius: 35,
-                                            backgroundImage: AssetImage(
-                                                "assets/images/tree.jpeg"),
+                                            backgroundImage:
+                                                NetworkImage(data.image),
                                           ),
                                           const SizedBox(width: 10),
                                           Expanded(
