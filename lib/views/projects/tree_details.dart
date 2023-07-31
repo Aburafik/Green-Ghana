@@ -14,56 +14,58 @@ class TreeDetailsVC extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Center(
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Color(0xffEDEDED),
-                  child: Icon(
-                    FeatherIcons.camera,
-                    color: Color(0xFFE1E1E1),
-                    size: 50,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Center(
+                  child: CircleAvatar(
+                    radius: 60,
+                    backgroundColor: Color(0xffEDEDED),
+                    child: Icon(
+                      FeatherIcons.camera,
+                      color: Color(0xFFE1E1E1),
+                      size: 50,
+                    ),
                   ),
                 ),
-              ),
-              minheading(title: "Tree Name"),
-               ReUsableFormWidget(
-                hintText: treeModel.treeName,
-              ),
-              minheading(title: "Tree Status"),
-              DecoratedMaterialWidget(
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton(
-                      hint:  Text(treeModel.status),
-                      isExpanded: true,
-                      items: treeStatus
-                          .map((e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e.toString()),
-                              ))
-                          .toList(),
-                      onChanged: (value) {}),
+                minheading(title: "Tree Name"),
+                 ReUsableFormWidget(
+                  hintText: treeModel.treeName,
                 ),
-              ),
-              minheading(title: "Tree Height"),
-              ReUsableFormWidget(
-                hintText: treeModel.treeHeight.toString(),
-              ),
-              minheading(title: "Tree Width"),
-              const ReUsableFormWidget(
-                hintText: "10cm",
-              ),
-              minheading(title: "Date Planted"),
-              ReUsableFormWidget(
-                hintText: treeModel.datePlanted.toString(),
-              ),
-              minheading(title: "Loaction"),
-              ReUsableFormWidget(
-                hintText: treeModel.locationPlanted,
-              ),
-            ],
+                minheading(title: "Tree Status"),
+                DecoratedMaterialWidget(
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                        hint:  Text(treeModel.status),
+                        isExpanded: true,
+                        items: treeStatus
+                            .map((e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e.toString()),
+                                ))
+                            .toList(),
+                        onChanged: (value) {}),
+                  ),
+                ),
+                minheading(title: "Tree Height"),
+                ReUsableFormWidget(
+                  hintText: treeModel.treeHeight.toString(),
+                ),
+                minheading(title: "Tree Width"),
+                const ReUsableFormWidget(
+                  hintText: "10cm",
+                ),
+                minheading(title: "Date Planted"),
+                ReUsableFormWidget(
+                  hintText: treeModel.datePlanted.toString(),
+                ),
+                minheading(title: "Loaction"),
+                ReUsableFormWidget(
+                  hintText: treeModel.locationPlanted,
+                ),
+              ],
+            ),
           ),
         ),
       ),
