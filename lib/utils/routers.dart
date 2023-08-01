@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:green_ghana_app/utils/exports.dart';
-import 'package:green_ghana_app/views/projects/register_tree.dart';
+
 
 class AppRouter {
   static const String initialRoute = "/";
@@ -14,6 +14,7 @@ class AppRouter {
   static const String aboutScreen = "/aboutScreen";
   static const String strategies = "/strategies";
   static const String registerTreeScreen = "/registerTreeScreen";
+  static const String profileScreen = "/profileScreen";
 
   static List<GetPage> routes = [
     GetPage(name: initialRoute, page: () => const IntroView()),
@@ -25,5 +26,6 @@ class AppRouter {
     GetPage(name: aboutScreen, page: () => const AboutGreenGhana()),
     GetPage(name: strategies, page: () => const StrategiesVC()),
     GetPage(name: registerTreeScreen, page: () => const RegisterTreeVC()),
+    GetPage(name: profileScreen, page: () => const ProfileView()),
   ];
 }

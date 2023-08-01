@@ -136,10 +136,13 @@ class HomeDrawer extends StatelessWidget {
           "assets/images/logo.png",
           height: 100,
         ),
-        const DrawerTileComponent(
-          title: "Profile",
-          icon: FeatherIcons.user,
-        ),
+        DrawerTileComponent(
+            title: "Profile",
+            icon: FeatherIcons.user,
+            onTap: () {
+              Navigator.pop(context);
+              Get.toNamed(AppRouter.profileScreen);
+            }),
         DrawerTileComponent(
             title: "Strategies",
             icon: FeatherIcons.anchor,

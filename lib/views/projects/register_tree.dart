@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:green_ghana_app/modules/register_tree_model.dart';
@@ -23,7 +22,6 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
 
   TextEditingController? locationController;
   File? _image;
-  // String? _imageUrls;
   String? selectedFile;
   String? uploadFile;
 
@@ -127,27 +125,28 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                  style: TextButton.styleFrom(
-                      backgroundColor: CustomColors.primaryColor),
-                  onPressed: () async {
-                    registration.registerTree(
-                        registerTree: RegesterTreeModel(
-                            image: "",
-                            treeName: treeNameController!.text,
-                            treeHeight: int.parse(treeHeightController!.text),
-                            locationPlanted: locationController!.text,
-                            datePlanted: datePlantedController!.text),
-                        file: _image,
-                        context: context);
-                  },
-                  child: const Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        "Submit",
-                      ),
+                style: TextButton.styleFrom(
+                    backgroundColor: CustomColors.primaryColor),
+                onPressed: () async {
+                  registration.registerTree(
+                      registerTree: RegesterTreeModel(
+                          image: "",
+                          treeName: treeNameController!.text,
+                          treeHeight: int.parse(treeHeightController!.text),
+                          locationPlanted: locationController!.text,
+                          datePlanted: datePlantedController!.text),
+                      file: _image,
+                      context: context);
+                },
+                child: const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    child: Text(
+                      "Submit",
                     ),
-                  ))
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -172,16 +171,18 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
             ),
           ),
           Positioned(
-              bottom: 0,
-              left: 70,
-              right: 0,
-              child: IconButton(
-                  onPressed: () {
-                    selectImageFrom();
-                  },
-                  icon: const Icon(
-                    Icons.camera_alt_outlined,
-                  )))
+            bottom: 0,
+            left: 70,
+            right: 0,
+            child: IconButton(
+              onPressed: () {
+                selectImageFrom();
+              },
+              icon: const Icon(
+                Icons.camera_alt_outlined,
+              ),
+            ),
+          )
         ],
       ),
     );
