@@ -162,13 +162,15 @@ class _RegisterTreeVCState extends State<RegisterTreeVC> {
             radius: 60,
             backgroundImage: _image != null ? FileImage(_image!) : null,
             backgroundColor: Color(0xffEDEDED),
-            child: const Center(
-              child: Icon(
-                FeatherIcons.camera,
-                color: Color(0xFFE1E1E1),
-                size: 50,
-              ),
-            ),
+            child: _image != null
+                ? null
+                : const Center(
+                    child: Icon(
+                      FeatherIcons.camera,
+                      color: Color(0xFFE1E1E1),
+                      size: 50,
+                    ),
+                  ),
           ),
           Positioned(
             bottom: 0,

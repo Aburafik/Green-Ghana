@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:get/get_connect/connect.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:green_ghana_app/modules/sign_uo_module.dart';
 import 'package:green_ghana_app/modules/user_module.dart';
 import 'package:green_ghana_app/utils/api_endpoints.dart';
@@ -13,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthService {
   final GetConnect _connect = GetConnect(timeout: const Duration(seconds: 30));
   Logger logger = Logger();
+  final box = GetStorage();
 
   ///SignUp User
   Future<UserAddress> signUpUser(
@@ -71,7 +73,9 @@ class AuthService {
         Get.toNamed(AppRouter.projecthome, arguments: modelName.toString());
       }
       UserModel user = UserModel.fromJson(res.body);
-      // final user = res.body['userAddress'];
+      UserAddress users = res.body['userAddress'];
+      logger.d(
+          ":::::::::::::::::::${users.accountType}::::::::::::::::::::::::::::::::::::");
       logger.d(user.userToken);
       sharedPreferences.setString("token", user.userToken);
       logger.d(res.body);
