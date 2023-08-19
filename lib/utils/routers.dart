@@ -2,7 +2,6 @@
 
 import 'package:green_ghana_app/utils/exports.dart';
 
-
 class AppRouter {
   static const String initialRoute = "/";
   static const String home = "/home";
@@ -26,6 +25,6 @@ class AppRouter {
     GetPage(name: aboutScreen, page: () => const AboutGreenGhana()),
     GetPage(name: strategies, page: () => const StrategiesVC()),
     GetPage(name: registerTreeScreen, page: () => const RegisterTreeVC()),
-    GetPage(name: profileScreen, page: () => const ProfileView()),
+    GetPage(name: profileScreen, page: () => ProfileView()),
   ];
 }

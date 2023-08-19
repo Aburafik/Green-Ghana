@@ -63,36 +63,6 @@ class TreeService {
     }
   }
 
-  // Future<RegesterTreeModel> registerTree(
-  //     {RegesterTreeModel? registerTree, BuildContext? context}) async {
-  //   loadingBar(context!);
-  // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  // String token = sharedPreferences.getString("token")!;
-  //   final response = await _connect.post(
-  //       "${ApIEndPoints.BASE_URL}${ApIEndPoints.REGISTER_NEW_TREE}",
-  //       registerTree!.toJson(),
-  // headers: {'Authorization': "Bearer $token"});
-  // if (response.statusCode == 201) {
-  //   logger.d(response.body);
-  //   String message = response.body["message"];
-  //   if (context.mounted) {
-  //     Navigator.pop(context);
-  //     showSuccessSnackBar(message: message, context: context);
-  //   }
-  //   return null!;
-  // } else {
-  //   logger.d(response.body);
-  //   String message = response.body['error'] ?? response.body['message'];
-  //   logger.d(message);
-  //   if (context.mounted) {
-  //     Navigator.pop(context);
-  //     showErrorSnackBar(context: context, message: message);
-  //   }
-
-  //     return null!;
-  //   }
-  // }
-
   //GET ALL TREES
   Future<List<GetAllTreeModel>> getAlltrees() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

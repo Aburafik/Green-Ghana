@@ -1,14 +1,24 @@
 import 'package:green_ghana_app/utils/exports.dart';
 
 class ProjectHomeView extends StatelessWidget {
-   ProjectHomeView({Key? key}) : super(key: key);
+  ProjectHomeView({Key? key}) : super(key: key);
 
   final modelType = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: commonAppBar(hasIconColor: false),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Get.toNamed(AppRouter.home);
+          },
+        ),
+      ),
       body: Stack(
         children: [
           Container(
@@ -43,7 +53,7 @@ class ProjectHomeView extends StatelessWidget {
                       onTap: () => Get.toNamed(AppRouter.regidtered_tress),
                     ),
                     Container(),
-                     Column(
+                    Column(
                       children: [
                         const Text(
                           "Logged into",
@@ -57,7 +67,8 @@ class ProjectHomeView extends StatelessWidget {
                         ),
                         Text(
                           modelType,
-                          style: const TextStyle(color: CustomColors.secondaryColor),
+                          style: const TextStyle(
+                              color: CustomColors.secondaryColor),
                         ),
                       ],
                     )

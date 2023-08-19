@@ -1,8 +1,10 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:green_ghana_app/modules/get_all_trees_model.dart';
 import 'package:green_ghana_app/services/trees_auth.dart';
 import 'package:green_ghana_app/utils/exports.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RegisterdTreesVC extends StatefulWidget {
   const RegisterdTreesVC({super.key});
@@ -78,9 +80,28 @@ class _RegisterdTreesVCState extends State<RegisterdTreesVC> {
                   builder:
                       (context, AsyncSnapshot<List<GetAllTreeModel>> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return ListView.builder(
+                          itemCount: 15,
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Shimmer.fromColors(
+                                  baseColor: Colors.grey.shade100,
+                                  highlightColor: Colors.grey.shade300,
+                                  child: Row(
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 30,
+                                      ),
+                                      SizedBox(width: 15),
+                                      Expanded(
+                                          child: Container(
+                                        height: 60,
+                                        color: Colors.red,
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                          ));
                     } else if (snapshot.connectionState ==
                             ConnectionState.done &&
                         !snapshot.hasData) {
@@ -93,7 +114,7 @@ class _RegisterdTreesVCState extends State<RegisterdTreesVC> {
                             child: Text("No Data Found"),
                           )
                         : ListView.builder(
-                            reverse: true,
+                            reverse: filter.isEmpty ? true : false,
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
                               GetAllTreeModel data = snapshot.data![index];
@@ -108,10 +129,23 @@ class _RegisterdTreesVCState extends State<RegisterdTreesVC> {
                                       color: Colors.white.withOpacity(.1),
                                       child: Row(
                                         children: [
-                                          CircleAvatar(
-                                            radius: 35,
-                                            backgroundImage:
-                                                NetworkImage(data.image),
+                                          CachedNetworkImage(
+                                            imageUrl: data.image,
+                                            imageBuilder:
+                                                (context, imageProvider) =>
+                                                    CircleAvatar(
+                                                        radius: 30,
+                                                        backgroundImage:
+                                                            imageProvider),
+                                            placeholder: (context, url) =>
+                                                CircleAvatar(
+                                              radius: 30,
+                                              backgroundImage: NetworkImage(
+                                                  "http://via.placeholder.com/200x150"),
+                                            ),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
                                           ),
                                           const SizedBox(width: 10),
                                           Expanded(
